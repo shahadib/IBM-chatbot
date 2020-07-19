@@ -1,0 +1,314 @@
+{
+  "intents": [
+    {
+      "intent": "goodbye",
+      "examples": [
+        {
+          "text": "i have to go"
+        },
+        {
+          "text": "see you later"
+        },
+        {
+          "text": "goodbye"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greating",
+      "examples": [
+        {
+          "text": "hi"
+        },
+        {
+          "text": "good afternoon"
+        },
+        {
+          "text": "good morning"
+        },
+        {
+          "text": "hello"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "move",
+      "examples": [
+        {
+          "text": "i want you to go forward"
+        },
+        {
+          "text": "i want you to go backward"
+        },
+        {
+          "text": "i want you to go left"
+        },
+        {
+          "text": "i want you to go right"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "stop",
+      "examples": [
+        {
+          "text": "do not move"
+        },
+        {
+          "text": "stoooop"
+        },
+        {
+          "text": "can you just stop"
+        },
+        {
+          "text": "i want you to stop"
+        },
+        {
+          "text": "stop"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "bye",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "goodbye",
+          "synonyms": [
+            "bye",
+            "bye bye"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "stopmove",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "stop",
+          "synonyms": [
+            "do not move",
+            "stand"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "direction",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "forward",
+          "synonyms": [
+            "sraight ahead"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "backward",
+          "synonyms": [
+            "back"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "left",
+          "synonyms": [
+            "left side"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "right",
+          "synonyms": [
+            "right side"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "greating",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hi"
+              },
+              {
+                "text": "hello"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greating",
+      "dialog_node": "node_9_1595126029290",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_2_1595125676975",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "goodbye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "bye bye"
+              },
+              {
+                "text": "good bye"
+              },
+              {
+                "text": "see you later"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#goodbye",
+      "dialog_node": "node_2_1595125676975",
+      "previous_sibling": "node_1_1595125601805"
+    },
+    {
+      "type": "standard",
+      "title": "move to direction",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "sure..."
+              },
+              {
+                "text": "ofcourse"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#move",
+      "dialog_node": "node_5_1595125407301",
+      "previous_sibling": "node_9_1595126029290"
+    },
+    {
+      "type": "standard",
+      "title": "stop moving",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "OK..."
+              },
+              {
+                "text": "stopped..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#stop",
+      "dialog_node": "node_1_1595125601805",
+      "previous_sibling": "node_5_1595125407301"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
